@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Datadive
 
 struct CheckoutView: View {
     @EnvironmentObject var order: Order
@@ -43,6 +44,25 @@ struct CheckoutView: View {
             Alert(title: Text("결제 완료"),
                   message: Text("₩\(order.total) – \(Self.paymentTypes[paymentType])"),
                   dismissButton: .default(Text("OK")) {
+                    // ************************
+                    // * Datadive SDK 삽입 부분
+                    for item:MenuItem in order.items {
+                        let revenue:DDRevenue = DDRevenue.init().setProductIdentifier(item.id.uuidString)
+                        revenue.setQuantity(1)
+                        revenue.setPrice(item.price as NSNumber)
+                        let rEventProp = NSMutableDictionary.init()
+                        rEventProp["order_id"] = order.order_id
+                        rEventProp["product_name"] = item.name
+                        revenue.setEventProperties(rEventProp as? [AnyHashable : Any])
+                        Datadive.instance().logRevenueV2(revenue)
+                    }
+                    let eventProp = NSMutableDictionary.init()
+                    eventProp["order_id"] = order.order_id
+                    eventProp["payment_total_price"] = order.total
+                    eventProp["payment_type"] = Self.paymentTypes[paymentType]
+                    Datadive.instance().logEvent("order_complete", withEventProperties: eventProp as? [AnyHashable : Any])
+                    // ************************
+                    
                     order.removeAll()
                   }
             )

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Datadive
 
 struct AppView: View {
     var body: some View {
@@ -26,6 +27,11 @@ struct AppView: View {
                     Image(systemName: "gearshape")
                     Text("설정")
                 }
+        }.onAppear {    // viewDidAppear
+            // ************************
+            // * Datadive SDK 삽입 부분
+            Datadive.instance().logEvent("view_main")
+            // ************************
         }
     }
 }

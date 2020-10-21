@@ -8,6 +8,7 @@
 import UIKit
 import AppTrackingTransparency
 import AdSupport
+import Datadive
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,14 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        Datadive.instance().trackingSessionEvents = true
+        Datadive.instance().initializeApiKey("cd6312957e01361e6c876290f26d9104")
+        Datadive.instance().logEvent("open_app")
+        
         if #available(iOS 14, *) {
             ATTrackingManager.requestTrackingAuthorization(completionHandler: { status in
-//                GADMobileAds.sharedInstance().start(completionHandler: nil)
+                Datadive.instance().adSupportBlock = { () -> String in
+                    return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+                }
             })
         } else {
             // Fallback on earlier versions
-//            GADMobileAds.sharedInstance().start(completionHandler: nil)
         }
         return true
     }

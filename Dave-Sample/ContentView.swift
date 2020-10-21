@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Datadive
 
 struct ContentView: View {
     let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
@@ -23,6 +24,11 @@ struct ContentView: View {
             }
             .navigationBarTitle("Menu")
             .listStyle(GroupedListStyle())
+        }.onAppear {    // viewDidAppear
+            // ************************
+            // * Datadive SDK 삽입 부분
+            Datadive.instance().logEvent("view_product_list")
+            // ************************
         }
     }
 }
