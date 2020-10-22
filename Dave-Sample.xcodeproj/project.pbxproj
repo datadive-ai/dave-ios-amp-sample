@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140E597D253FB3E40004156C /* Datadive in Frameworks */ = {isa = PBXBuildFile; productRef = 140E597C253FB3E40004156C /* Datadive */; };
+		140E5980253FF8960004156C /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140E597F253FF8960004156C /* UserSetting.swift */; };
 		147F1F07253D5F44001A6470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147F1F06253D5F44001A6470 /* AppDelegate.swift */; };
 		147F1F09253D5F44001A6470 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147F1F08253D5F44001A6470 /* SceneDelegate.swift */; };
 		147F1F0B253D5F44001A6470 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147F1F0A253D5F44001A6470 /* ContentView.swift */; };
@@ -26,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140E597F253FF8960004156C /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		147F1F03253D5F44001A6470 /* Dave-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dave-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		147F1F06253D5F44001A6470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		147F1F08253D5F44001A6470 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				140E597D253FB3E40004156C /* Datadive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +97,7 @@
 				147F1F14253D5F45001A6470 /* Info.plist */,
 				147F1F0E253D5F45001A6470 /* Preview Content */,
 				14E17D08253E944C0075C65F /* SettingView.swift */,
+				140E597F253FF8960004156C /* UserSetting.swift */,
 			);
 			path = "Dave-Sample";
 			sourceTree = "<group>";
@@ -121,6 +126,9 @@
 			dependencies = (
 			);
 			name = "Dave-Sample";
+			packageProductDependencies = (
+				140E597C253FB3E40004156C /* Datadive */,
+			);
 			productName = "Dave-Sample";
 			productReference = 147F1F03253D5F44001A6470 /* Dave-Sample.app */;
 			productType = "com.apple.product-type.application";
@@ -148,6 +156,9 @@
 				Base,
 			);
 			mainGroup = 147F1EFA253D5F44001A6470;
+			packageReferences = (
+				140E597B253FB3E40004156C /* XCRemoteSwiftPackageReference "dave-ios-amp" */,
+			);
 			productRefGroup = 147F1F04253D5F44001A6470 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -181,6 +192,7 @@
 				147F1F07253D5F44001A6470 /* AppDelegate.swift in Sources */,
 				147F1F09253D5F44001A6470 /* SceneDelegate.swift in Sources */,
 				147F1F27253D74D2001A6470 /* ItemRow.swift in Sources */,
+				140E5980253FF8960004156C /* UserSetting.swift in Sources */,
 				147F1F20253D6E0F001A6470 /* Helper.swift in Sources */,
 				147F1F2A253D7EEC001A6470 /* ItemDetail.swift in Sources */,
 				147F1F2D253D86E0001A6470 /* OrderView.swift in Sources */,
@@ -385,6 +397,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		140E597B253FB3E40004156C /* XCRemoteSwiftPackageReference "dave-ios-amp" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/datadive-ai/dave-ios-amp.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		140E597C253FB3E40004156C /* Datadive */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 140E597B253FB3E40004156C /* XCRemoteSwiftPackageReference "dave-ios-amp" */;
+			productName = Datadive;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 147F1EFB253D5F44001A6470 /* Project object */;
 }

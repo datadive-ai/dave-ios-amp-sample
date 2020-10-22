@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Datadive
 
 struct ItemDetail: View {
     @EnvironmentObject var order:Order
@@ -15,10 +16,31 @@ struct ItemDetail: View {
             Text(item.description).padding()
             Button("장바구니 넣기") {
                 self.order.add(item: self.item)
+                // ************************
+                // * Datadive SDK 삽입 부분
+                let eventProp = NSMutableDictionary.init()
+                eventProp["itemid"] = 0
+                Datadive.instance().logEvent("click_shoppingbag_in_product", withEventProperties: eventProp as? [AnyHashable : Any])
+                // ************************
+                
             }.font(.headline)
             Spacer()
         }
         .navigationBarTitle(item.name)
+        .onAppear {    // viewDidAppear
+            // ************************
+            // * Datadive SDK 삽입 부분
+            let eventProp = NSMutableDictionary.init()
+            eventProp["itemid"] = 0
+            eventProp["product_name"] = self.item.name
+            eventProp["category_id"] = 0
+            eventProp["category_name"] = 0
+            eventProp["brand_id"] = 0
+            eventProp["brand_name"] = 0
+            eventProp["price"] = 0
+            Datadive.instance().logEvent("view_product", withEventProperties: eventProp as? [AnyHashable : Any])
+            // ************************
+        }
     }
 }
 
